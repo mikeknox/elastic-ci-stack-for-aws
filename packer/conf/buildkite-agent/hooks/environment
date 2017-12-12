@@ -32,10 +32,12 @@ fi
 echo "Configuring built-in plugins"
 
 [[ ! ${SECRETS_PLUGIN_ENABLED:-true} =~ (on|1|true) ]] && PLUGINS_ENABLED=${PLUGINS_ENABLED/secrets/}
+[[ ! ${VAULT_SECRETS_PLUGIN_ENABLED:-true} =~ (on|1|true) ]] && PLUGINS_ENABLED=${PLUGINS_ENABLED/vault-secrets/}
 [[ ! ${DOCKER_LOGIN_PLUGIN_ENABLED:-true} =~ (on|1|true) ]] && PLUGINS_ENABLED=${PLUGINS_ENABLED/docker-login/}
 [[ ! ${ECR_PLUGIN_ENABLED:-true} =~ (on|1|true) ]] && PLUGINS_ENABLED=${PLUGINS_ENABLED/ecr/}
 
 SECRETS_PLUGIN_ENABLED=0
+VAULT_SECRETS_PLUGIN_ENABLED=0
 DOCKER_LOGIN_PLUGIN_ENABLED=0
 ECR_PLUGIN_ENABLED=0
 
@@ -44,6 +46,10 @@ for plugin in $PLUGINS_ENABLED ; do
     secrets)
       export SECRETS_PLUGIN_ENABLED=1
       echo "Secrets plugin enabled"
+      ;;
+    vault-secrets)
+      export VAULT_SECRETS_PLUGIN_ENABLED=1
+      echo "Vault Secrets plugin enabled"
       ;;
     docker-login)
       export DOCKER_LOGIN_PLUGIN_ENABLED=1
@@ -61,4 +67,11 @@ if [[ -n "${BUILDKITE_SECRETS_BUCKET:-}" &&  "${SECRETS_PLUGIN_ENABLED:-}" == "1
 
   # shellcheck source=/dev/null
   source /usr/local/buildkite-aws-stack/plugins/secrets/hooks/environment
+fi
+
+if [[ -n "${BUILDKITE_VAULT_SECRETS_SERVER:-}" &&  "${VAULT_SECRETS_PLUGIN_ENABLED:-}" == "1" ]] ; then
+  export BUILDKITE_PLUGIN_VAULT_SECRETS_SERVER="$BUILDKITE_VAULT_SECRETS_SERVER"
+
+  # shellcheck source=/dev/null
+  source /usr/local/buildkite-aws-stack/plugins/vault-secrets/hooks/environment
 fi
