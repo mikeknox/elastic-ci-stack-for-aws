@@ -1,6 +1,6 @@
 env:
   AWS_STACK_NAME: "buildkite-aws-stack-test-${BUILDKITE_BUILD_NUMBER}"
-  AWS_STACK_QUEUE_NAME: "test-agent"
+  AWS_STACK_QUEUE_NAME: "testqueue-${BUILDKITE_BUILD_NUMBER}"
 
 steps:
   - name: ":bash: Lint"
