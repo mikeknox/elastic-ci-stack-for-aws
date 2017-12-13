@@ -35,7 +35,7 @@ cat << EOF > config.json
   {
     "ParameterKey": "BootstrapScriptUrl",
     "ParameterValue": "${BUILDKITE_AWS_STACK_BOOTSTRAP_URL:-}"
-  }
+  },
   {
     "ParameterKey": "InstanceType",
     "ParameterValue": "t2.nano"
