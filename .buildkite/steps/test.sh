@@ -33,6 +33,10 @@ cat << EOF > config.json
     "ParameterValue": "${AWS_KEYPAIR:-default}"
   },
   {
+    "ParameterKey": "BootstrapScriptUrl",
+    "ParameterValue": "${BUILDKITE_AWS_STACK_BOOTSTRAP_URL:-}"
+  }
+  {
     "ParameterKey": "InstanceType",
     "ParameterValue": "t2.nano"
   },
