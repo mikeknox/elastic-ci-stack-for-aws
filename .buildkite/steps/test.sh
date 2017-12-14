@@ -2,8 +2,9 @@
 # shellcheck disable=SC1117
 set -eu
 
-vpc_id=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --output text)
-subnets=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpc_id" --query "Subnets[*].[SubnetId,AvailabilityZone]" --output text)
+region=`curl -s -S http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'`
+vpc_id=$(aws ec2 describe-vpcs --filters "Name=isDefault,Values=true" --query "Vpcs[0].VpcId" --region ${region:-us-east-1} --output text)
+subnets=$(aws ec2 describe-subnets --filters "Name=vpc-id,Values=$vpc_id" --query "Subnets[*].[SubnetId,AvailabilityZone]" --region ${region:-us-east-1} --output text)
 subnet_ids=$(awk '{print $1}' <<< "$subnets" | tr ' ' ',' | tr '\n' ',' | sed 's/,$//')
 az_ids=$(awk '{print $2}' <<< "$subnets" | tr ' ' ',' | tr '\n' ',' | sed 's/,$//')
 
@@ -35,6 +36,10 @@ cat << EOF > config.json
   {
     "ParameterKey": "BootstrapScriptUrl",
     "ParameterValue": "${BUILDKITE_AWS_STACK_BOOTSTRAP_URL:-}"
+  },
+  {
+    "ParameterKey": "SecretsBucket",
+    "ParameterValue": "${BUILDKITE_AWS_STACK_SECRET_BUCKET:-}"
   },
   {
     "ParameterKey": "InstanceType",
