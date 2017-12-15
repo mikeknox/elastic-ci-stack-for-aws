@@ -78,6 +78,10 @@ cat << EOF > config.json
     "ParameterValue": "${BUILDKITE_AWS_STACK_BOOTSTRAP_URL:-}"
   },
   {
+    "ParameterKey": "EnableVaultSecretsPlugin",
+    "ParameterValue": "true"
+  },
+  {
     "ParameterKey": "AssociatePublicIpAddress",
     "ParameterValue": "${BUILDKITE_AWS_STACK_PUBLIC_IP:-true}"
   },

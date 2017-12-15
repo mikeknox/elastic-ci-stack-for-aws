@@ -30,6 +30,7 @@ Metadata:
         - KeyName
         - SpotPrice
         - SecretsBucket
+        - VaultServerUrl
         - ArtifactsBucket
         - AuthorizedUsersUrl
         - BootstrapScriptUrl
@@ -58,6 +59,7 @@ Metadata:
           default: Plugin Configuration
         Parameters:
         - EnableSecretsPlugin
+        - EnableVaultSecretsPlugin
         - EnableECRPlugin
         - EnableDockerLoginPlugin
 
@@ -111,6 +113,11 @@ Parameters:
 
   SecretsBucket:
     Description: Optional - Name of an existing S3 bucket containing pipeline secrets (Created if left blank)
+    Type: String
+    Default: ""
+
+  VaultServerUrl:
+    Description: Optional - Url of an existing Vault Server to use for secrets
     Type: String
     Default: ""
 
@@ -229,6 +236,14 @@ Parameters:
       - true
       - false
     Default: "true"
+
+  EnableVaultSecretsPlugin:
+    Type: String
+    Description: Enables vault-secrets plugin for all pipelines
+    AllowedValues:
+      - true
+      - false
+    Default: "false"
 
   EnableECRPlugin:
     Type: String
@@ -492,6 +507,7 @@ Resources:
               AWS_DEFAULT_REGION=${AWS::Region} \
               SECRETS_PLUGIN_ENABLED=${EnableSecretsPlugin} \
               ECR_PLUGIN_ENABLED=${EnableECRPlugin} \
+              VAULT_SECRETS_PLUGIN_ENABLED=${EnableVaultSecretsPlugin} \
               DOCKER_LOGIN_PLUGIN_ENABLED=${EnableDockerLoginPlugin} \
               AWS_REGION=${AWS::Region} \
                 /usr/local/bin/bk-install-elastic-stack.sh
