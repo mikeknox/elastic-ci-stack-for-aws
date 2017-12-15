@@ -82,6 +82,10 @@ cat << EOF > config.json
     "ParameterValue": "true"
   },
   {
+    "ParameterKey": "VaultServerUrl",
+    "ParameterValue": "${BUILDKITE_AWS_STACK_VAULT_SERVER:-}"
+  },
+  {
     "ParameterKey": "AssociatePublicIpAddress",
     "ParameterValue": "${BUILDKITE_AWS_STACK_PUBLIC_IP:-true}"
   },
