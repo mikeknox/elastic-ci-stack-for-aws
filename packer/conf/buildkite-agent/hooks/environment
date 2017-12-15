@@ -69,8 +69,8 @@ if [[ -n "${BUILDKITE_SECRETS_BUCKET:-}" &&  "${SECRETS_PLUGIN_ENABLED:-}" == "1
   source /usr/local/buildkite-aws-stack/plugins/secrets/hooks/environment
 fi
 
-if [[ -n "${BUILDKITE_VAULT_SECRETS_SERVER:-}" &&  "${VAULT_SECRETS_PLUGIN_ENABLED:-}" == "1" ]] ; then
-  export BUILDKITE_PLUGIN_VAULT_SECRETS_SERVER="$BUILDKITE_VAULT_SECRETS_SERVER"
+if [[ -n "${BUILDKITE_SECRETS_VAULT_SERVER:-}" &&  "${VAULT_SECRETS_PLUGIN_ENABLED:-}" == "1" ]] ; then
+  export BUILDKITE_PLUGIN_VAULT_SECRETS_SERVER="$BUILDKITE_SECRETS_VAULT_SERVER"
 
   # shellcheck source=/dev/null
   source /usr/local/buildkite-aws-stack/plugins/vault-secrets/hooks/environment
