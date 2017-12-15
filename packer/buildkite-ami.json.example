@@ -42,6 +42,10 @@
     },
     {
       "type": "shell",
+      "script": "scripts/install-vault.sh"
+    },
+    {
+      "type": "shell",
       "script": "scripts/install-buildkite-agent.sh"
     }
   ]
