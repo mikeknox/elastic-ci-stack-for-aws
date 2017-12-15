@@ -10,5 +10,5 @@
 	path = plugins/docker-login
 	url = https://github.com/buildkite-plugins/docker-login-buildkite-plugin.git
 [submodule "plugins/vault-secrets-buildkite-plugin"]
-	path = plugins/vault-secrets-buildkite-plugin
+	path = plugins/vault-secrets
 	url = git@github.com:PromisePay/vault-secrets-buildkite-plugin.git
