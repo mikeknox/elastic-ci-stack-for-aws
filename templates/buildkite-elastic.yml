@@ -516,9 +516,9 @@ Resources:
               BUILDKITE_AWS_STACK_PUBLIC_IP=${AssociatePublicIpAddress} \
               BUILDKITE_SECRETS_BUCKET="${LocalSecretsBucket}" \
               BUILDKITE_SECRETS_VAULT_SERVER="${VaultServerUrl}" \
-              BUILDKITE_PLUGIN_VAULT_SECRETS_AUTH_METHOD="${VaultAuthMethod:-}" \
-              BUILDKITE_PLUGIN_VAULT_SECRETS_AUTH_HEADER="${VaultAuthHeader:-}" \
-              BUILDKITE_PLUGIN_VAULT_SECRETS_ROLE="${VaultAuthRole:-}" \
+              BUILDKITE_PLUGIN_VAULT_SECRETS_AUTH_METHOD="${VaultAuthMethod}" \
+              BUILDKITE_PLUGIN_VAULT_SECRETS_AUTH_HEADER="${VaultAuthHeader}" \
+              BUILDKITE_PLUGIN_VAULT_SECRETS_ROLE="${VaultAuthRole}" \
               BUILDKITE_AGENT_TOKEN="${BuildkiteAgentToken}" \
               BUILDKITE_AGENTS_PER_INSTANCE="${AgentsPerInstance}" \
               BUILDKITE_AGENT_TAGS="${BuildkiteAgentTags}" \
