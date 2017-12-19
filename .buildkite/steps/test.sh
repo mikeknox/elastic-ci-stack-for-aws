@@ -86,6 +86,14 @@ cat << EOF > config.json
     "ParameterValue": "${BUILDKITE_AWS_STACK_VAULT_SERVER:-}"
   },
   {
+    "ParameterKey": "VaultAuthMethod",
+    "ParameterValue": "${BUILDKITE_PLUGIN_VAULT_SECRETS_AUTH_METHOD:-aws}"
+  },
+  {
+    "ParameterKey": "VaultAuthRole",
+    "ParameterValue": "${BUILDKITE_PLUGIN_VAULT_SECRETS_ROLE:-}"
+  },
+  {
     "ParameterKey": "AssociatePublicIpAddress",
     "ParameterValue": "${BUILDKITE_AWS_STACK_PUBLIC_IP:-true}"
   },

@@ -60,6 +60,10 @@ Metadata:
         Parameters:
         - EnableSecretsPlugin
         - EnableVaultSecretsPlugin
+        - VaultServerUrl
+        - VaultAuthMethod
+        - VaultAuthRole
+        - VaultAuthHeader
         - EnableECRPlugin
         - EnableDockerLoginPlugin
 
@@ -119,6 +123,22 @@ Parameters:
   VaultServerUrl:
     Description: Optional - Url of an existing Vault Server to use for secrets
     Type: String
+    Default: ""
+
+  VaultAuthMethod:
+    Description: Optional - Vault Auth Method to use
+    Type: String
+    Default: ""
+
+  VaultAuthRole:
+    Description: Optional - Vault Auth role to use
+    Type: String
+    Default: ""
+
+  VaultAuthHeader:
+    Description: Optional - Vault Auth header to use
+    Type: String
+    NoEcho: true
     Default: ""
 
   ArtifactsBucket:
@@ -496,6 +516,9 @@ Resources:
               BUILDKITE_AWS_STACK_PUBLIC_IP=${AssociatePublicIpAddress} \
               BUILDKITE_SECRETS_BUCKET="${LocalSecretsBucket}" \
               BUILDKITE_SECRETS_VAULT_SERVER="${VaultServerUrl}" \
+              BUILDKITE_PLUGIN_VAULT_SECRETS_AUTH_METHOD="${VaultAuthMethod:-}" \
+              BUILDKITE_PLUGIN_VAULT_SECRETS_AUTH_HEADER="${VaultAuthHeader:-}" \
+              BUILDKITE_PLUGIN_VAULT_SECRETS_ROLE="${VaultAuthRole:-}" \
               BUILDKITE_AGENT_TOKEN="${BuildkiteAgentToken}" \
               BUILDKITE_AGENTS_PER_INSTANCE="${AgentsPerInstance}" \
               BUILDKITE_AGENT_TAGS="${BuildkiteAgentTags}" \
