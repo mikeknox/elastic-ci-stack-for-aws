@@ -110,6 +110,14 @@ cat << EOF > config.json
     "ParameterValue": "${BUILDKITE_AWS_STACK_BOOTSTRAP_URL:-}"
   },
   {
+    "ParameterKey": "AssociatePublicIpAddress",
+    "ParameterValue": "${BUILDKITE_AWS_STACK_PUBLIC_IP:-true}"
+  },
+  {
+    "ParameterKey": "ManagedPolicyARN",
+    "ParameterValue": "${BUILDKITE_AWS_STACK_MANAGED_POLICY_ARN:-}"
+  },
+  {
     "ParameterKey": "SecretsBucket",
     "ParameterValue": "${BUILDKITE_SECRETS_BUCKET:-}"
   }
