@@ -103,7 +103,11 @@ cat << EOF > config.json
   },
   {
     "ParameterKey": "BuildkiteAgentRelease",
-    "ParameterValue": "${BUILDKITE_AGENT_RELEASE:-beta}"
+    "ParameterValue": "${BUILDKITE_AGENT_RELEASE:-stable}"
+  },
+  {
+    "ParameterKey": "BootstrapScriptUrl",
+    "ParameterValue": "${BUILDKITE_AWS_STACK_BOOTSTRAP_URL:-}"
   },
   {
     "ParameterKey": "SecretsBucket",
