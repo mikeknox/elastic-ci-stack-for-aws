@@ -12,4 +12,4 @@
 
 [submodule "plugins/vault-secrets"]
 	path = plugins/vault-secrets
-	url = git@github.com:mikeknox/vault-secrets-buildkite-plugin.git
+	url = https://github.com/mikeknox/vault-secrets-buildkite-plugin.git
