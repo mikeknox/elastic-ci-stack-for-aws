@@ -12,5 +12,4 @@
 
 [submodule "plugins/vault-secrets"]
 	path = plugins/vault-secrets
-	url = git@github.com:PromisePay/vault-secrets-buildkite-plugin.git
-	branch = use-vault-backend
+	url = git@github.com:mikeknox/vault-secrets-buildkite-plugin.git
